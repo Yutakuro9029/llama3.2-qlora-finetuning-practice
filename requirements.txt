@@ -1,0 +1,8 @@
+transformers
+peft
+trl
+bitsandbytes
+accelerate
+datasets
+python-dotenv
+jupyter
