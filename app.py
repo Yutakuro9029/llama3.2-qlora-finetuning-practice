@@ -27,6 +27,7 @@ def load_model_and_tokenizer():
 tokenizer, model = load_model_and_tokenizer()
 
 st.title("Financial Sentiment Analyzer")
+st.caption("Powered by Llama-3.2-1B Fine-Tuned with QLoRA on FinGPT")
 
 # Sample buttons
 sample_news = [
