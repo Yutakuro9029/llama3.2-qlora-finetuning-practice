@@ -6,3 +6,4 @@ accelerate
 datasets
 python-dotenv
 jupyter
+streamlit
