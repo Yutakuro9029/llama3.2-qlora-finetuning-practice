@@ -1,0 +1,25 @@
+{
+  "n_test_before_filter": 2388,
+  "n_removed_as_overlap": 1,
+  "n_test_used": 2387,
+  "results": [
+    {
+      "model": "Majority class (always 'neutral')",
+      "accuracy": 0.6561,
+      "macro_f1": 0.2641,
+      "unparseable_pct": 0.0
+    },
+    {
+      "model": "Base Llama-3.2-1B (adapter off)",
+      "accuracy": 0.222,
+      "macro_f1": 0.2888,
+      "unparseable_pct": 35.2744
+    },
+    {
+      "model": "Fine-tuned (QLoRA adapter)",
+      "accuracy": 0.9036,
+      "macro_f1": 0.8797,
+      "unparseable_pct": 0.0
+    }
+  ]
+}

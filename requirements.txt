@@ -7,3 +7,6 @@ datasets
 python-dotenv
 jupyter
 streamlit
+scikit-learn 
+pandas 
+matplotlib
