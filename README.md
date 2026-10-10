@@ -20,6 +20,10 @@ Fine-tuning open-weights Large Language Models (LLMs) on domain-specific classif
 
 ---
 
+## Live Demo
+
+You can try it here: https://fin-sentiment-analyzer.streamlit.app
+
 ## Training Configuration & Results
 
 | Hyperparameter              | Value                                                                       |
@@ -40,6 +44,7 @@ Fine-tuning open-weights Large Language Models (LLMs) on domain-specific classif
 ## Project Structure
 
 ```text
+├── app.py                        # Streamlit web application
 ├── lora_qlora_finetuning.ipynb   # Main Jupyter notebook containing workflow
 ├── requirements.txt              # Required Python packages
 ├── .gitignore                    # Ignored model checkpoints and cache
