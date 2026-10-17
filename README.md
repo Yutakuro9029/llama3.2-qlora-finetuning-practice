@@ -50,15 +50,15 @@ The training loss and token accuracy are training diagnostics only. They are com
 
 **Test set:** the `validation` split of `zeroshot/twitter-financial-news-sentiment` (2,388 rows). One row was removed because its text exactly matched a training input, leaving 2,387 rows. Greedy decoding, with the same 4-bit configuration as training. The notebook is `evaluation.ipynb`.
 
-| System                                          | Accuracy | Macro-F1 | Unparseable output |
-| :---------------------------------------------- | -------: | -------: | -----------------: |
-| Majority class (always "neutral")               |    0.656 |    0.264 |                 0% |
-| Base Llama-3.2-1B (adapter disabled, zero-shot) |    0.222 |    0.289 |              35.3% |
-| **Fine-tuned (QLoRA adapter)**                  |  **0.904** |  **0.880** |             **0%** |
+| System                                          |  Accuracy |  Macro-F1 | Unparseable output |
+| :---------------------------------------------- | --------: | --------: | -----------------: |
+| Majority class (always "neutral")               |     0.656 |     0.264 |                 0% |
+| Base Llama-3.2-1B (adapter disabled, zero-shot) |     0.222 |     0.289 |              35.3% |
+| **Fine-tuned (QLoRA adapter)**                  | **0.904** | **0.880** |             **0%** |
 
 Per-class results for the fine-tuned model:
 
-| Class    | Precision | Recall | F1    | Support |
+| Class    | Precision | Recall |    F1 | Support |
 | :------- | --------: | -----: | ----: | ------: |
 | negative |     0.839 |  0.876 | 0.857 |     346 |
 | neutral  |     0.931 |  0.928 | 0.930 |    1566 |
@@ -187,21 +187,23 @@ print(f"Predicted Sentiment: {prediction}")
 
 ## Dataset Credit
 
-**Training data:** [`FinGPT/fingpt-sentiment-train`](https://huggingface.co/datasets/FinGPT/fingpt-sentiment-train), from the Hugging Face Hub (AI4Finance Foundation). About 76.8k instruction-formatted financial sentiment samples.
+**Training data:** [`FinGPT/fingpt-sentiment-train`](https://huggingface.co/datasets/FinGPT/fingpt-sentiment-train), published on the Hugging Face Hub under the FinGPT organization. About 76.8k instruction-formatted financial sentiment samples.
 
 - **License:** the dataset card does not declare a license, and the data is compiled from several public financial-text sources whose own terms may differ. No license is asserted for it here, and it is used for educational and research practice only. Anyone reusing it should check the terms of the original sources.
-- **Modifications made for this project:** the dataset records (`instruction`, `input`, `output`) were formatted into structured instruction-tuning prompts with EOS tokens for causal language modeling; original text entries and label values were not altered.
+- **Modifications made for this project:** the records (`instruction`, `input`, `output`) were formatted into a single `Instruction / Input / Answer` text prompt with an EOS token appended, for causal language modeling. The original text entries and label values were not altered.
 
-**Evaluation data:** [`zeroshot/twitter-financial-news-sentiment`](https://huggingface.co/datasets/zeroshot/twitter-financial-news-sentiment), `validation` split, used only for evaluation and never for training.
+**Evaluation data:** [`zeroshot/twitter-financial-news-sentiment`](https://huggingface.co/datasets/zeroshot/twitter-financial-news-sentiment), `validation` split, used only for evaluation in this project (see the Evaluation section for the in-distribution caveat).
 
-- **License:** [TODO: confirm the license shown on the dataset page and replace this line with it]
-- **Modifications made for this project:** numeric labels were mapped to words (0 to negative, 1 to positive, 2 to neutral); one row was removed by the leakage check.
+- **License:** MIT, as shown on the dataset page.
+- **Modifications made for this project:** numeric labels were mapped to words (0 to negative, 1 to positive, 2 to neutral); one row was removed by the exact-match leakage check.
 
 ---
 
 ## License
 
-Code in this repository is licensed under the **MIT License**. This license applies to the code and notebooks only:
+Code in this repository is licensed under the **MIT License** (see `LICENSE`). This license applies to the code and notebooks only:
 
-- The base model weights (`meta-llama/Llama-3.2-1B`) are subject to the **Llama 3.2 Community License Agreement** and Acceptable Use Policy by Meta (see the [model page](https://huggingface.co/meta-llama/Llama-3.2-1B)). The LoRA adapter published on Hugging Face is a derivative of Llama 3.2 and is subject to the same terms.
-- The datasets are covered by the terms described under **Dataset Credit** above, not by this repository's MIT license.
+- **Base model and adapter:** the base model weights (`meta-llama/Llama-3.2-1B`) are subject to the [Llama 3.2 Community License Agreement](https://huggingface.co/meta-llama/Llama-3.2-1B) and the [Acceptable Use Policy](https://www.llama.com/llama3_2/use-policy) by Meta. The LoRA adapter published on [Hugging Face](https://huggingface.co/Yutakuroda/llama-3.2-1b-fingpt-sentiment) is a derivative of Llama 3.2 and is subject to the same terms; a copy of the license and the attribution notice are included in that repository.
+- **Datasets:** covered by the terms described under **Dataset Credit** above, not by this repository's MIT license.
+
+Built with Llama. Llama 3.2 is licensed under the Llama 3.2 Community License, Copyright © Meta Platforms, Inc. All Rights Reserved.
